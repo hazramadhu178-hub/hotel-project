@@ -1,0 +1,77 @@
+
+export const INITIAL_ENTRIES = [
+  {
+    id: 'entry-today',
+    fullDate: 'Jul 29, 2025',
+    image: './images/tropical-sandy-beach.jpg',
+    quote: 'I slow down to hear the flowers bloom and feel the gentle touch of the breeze.',
+    prompt: "Use the card's prompt to take a small action, make a decision, affirm a belief, or reflect on an idea, and write it down:",
+    content: `Escape to the coast and experience the simple pleasure of slowing down by the sea. Wake up to the gentle sound of waves, breathe in the fresh ocean air, and enjoy beautiful views that make every moment feel special. Spend your mornings walking along the beach, your afternoons relaxing under the warm sun, and your evenings watching the sky turn golden over the horizon.
+
+After a day by the water, treat yourself to delicious food prepared with fresh local ingredients. From flavorful seafood and regional specialties to refreshing drinks and relaxing meals, every dining experience is made to be enjoyed at your own pace.
+
+Whether you're travelling with family, spending time with someone special, or simply looking for a peaceful escape, our seaside hotel gives you the perfect place to relax, enjoy great food, and create unforgettable memories by the ocean.`,
+    location: '',
+    isLiked: false,
+  },
+  {
+    id: 'entry-26-12',
+    fullDate: 'Dec 26, 2024',
+    image: './images/sunset-coast.jpg',
+    quote: 'Every sunset brings the promise of a new dawn. Breathe in peace, exhale gratitude.',
+    prompt: 'Take a slow deep breath. What is one thing that made you smile today?',
+    content: 'Watched the golden hour light reflect across the water. A gentle reminder that every ending prepares a beautiful new beginning.',
+    location: 'Coastal Pier, Seaside',
+    isLiked: true,
+  },
+  {
+    id: 'entry-25-05',
+    fullDate: 'May 25, 2025',
+    image: './images/starry-night.jpg',
+    quote: 'In the quiet of the night, your thoughts become stars guiding your way forward.',
+    prompt: 'Look back at where you started this month. What courage have you discovered?',
+    content: 'Standing under the quiet night sky, feeling grounded and ready for the week ahead.',
+    location: 'Hillside Observatory',
+    isLiked: false,
+  },
+  {
+    id: 'entry-29-04',
+    fullDate: 'Apr 29, 2025',
+    image: './images/tropical-sandy-beach.jpg',
+    quote: 'Plant seeds of kindness in every hour, and watch your inner garden flourish.',
+    prompt: 'Write down one small act of self-kindness you can offer yourself today:',
+    content: 'Made myself a cup of warm chamomile tea and read 20 pages without checking notifications.',
+    location: 'Cozy Living Room',
+    isLiked: true,
+  },
+  {
+    id: 'entry-23-03',
+    fullDate: 'Mar 23, 2025',
+    image: './images/sunset-coast.jpg',
+    quote: 'Strength does not come from winning. Your struggles develop your strengths.',
+    prompt: 'What challenge did you face today with resilience and composure?',
+    content: 'Finished a demanding milestone at work. Reminded myself that steady patience always wins.',
+    location: 'Studio Workspace',
+    isLiked: false,
+  },
+  {
+    id: 'entry-11-12-2024',
+    fullDate: 'Dec 11, 2024',
+    image: './images/starry-night.jpg',
+    quote: 'Silence is not empty; it is full of answers waiting to be heard.',
+    prompt: 'Reflect on a decision you are currently contemplating in quiet clarity:',
+    content: 'Took an hour to unplug completely. The answers always feel clearer when the noise subsides.',
+    location: 'Tea Room, Kyoto',
+    isLiked: true,
+  },
+  {
+    id: 'entry-19-11-2024',
+    fullDate: 'Nov 19, 2024',
+    image: './images/tropical-sandy-beach.jpg',
+    quote: 'The journey of a thousand miles begins with a single intentional breath.',
+    prompt: 'What is one foundational principle you hold dear?',
+    content: 'Stay curious, stay kind, and cherish the small wonders of every single day.',
+    location: 'Home Library',
+    isLiked: false,
+  },
+];
