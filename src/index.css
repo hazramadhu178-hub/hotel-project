@@ -2482,23 +2482,7 @@ body {
   margin-top: clamp(2rem, 8vh, 5rem);
 }
 
-.preloader-boat-bob {
-  color: #2b6f8f;
-  animation: boatBob 2.6s ease-in-out infinite;
-  filter: drop-shadow(0 4px 6px rgba(43, 111, 143, 0.25));
-}
 
-.preloader-boat {
-  width: clamp(56px, 9vw, 78px);
-  height: auto;
-  display: block;
-  margin: 0 auto 0.75rem;
-}
-
-@keyframes boatBob {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-9px) rotate(3deg); }
-}
 
 .preloader-brand {
   font-family: 'Plus Jakarta Sans', sans-serif;

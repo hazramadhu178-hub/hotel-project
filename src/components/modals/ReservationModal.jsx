@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from "react";
+
 import { CalendarDays, Mail, Phone, User, X } from "lucide-react";
 
 const formatDate = (value) => {
@@ -16,19 +18,19 @@ export const ReservationModal = ({
     onSubmitted,
 }) => {
 
-const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    checkIn: "",
-    checkOut: "",
-    adults: 2,
-    children: 0,
-    requests: "",
-});
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        checkIn: "",
+        checkOut: "",
+        adults: 2,
+        children: 0,
+        requests: "",
+    });
 
-  const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (!isOpen) return;
@@ -54,7 +56,7 @@ const [formData, setFormData] = useState({
         setError("");
     }, [isOpen]);
 
-  if (!isOpen || !room) return null;
+    if (!isOpen || !room) return null;
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -65,69 +67,88 @@ const [formData, setFormData] = useState({
         }));
     };
 
-  // Submit reservation
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         setError("");
 
         if (formData.checkOut <= formData.checkIn) {
             setError("Check-out must be after check-in.");
             return;
         }
+
         setIsSubmitting(true);
 
-    try {
-        const response = await fetch(
-        `${import.meta.env.VITE_API_URL || ""}/api/reservations`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...formData,
-                room: room.name,
-            }),
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL || ""}/api/reservations`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ...formData,
+                        room: room.name,
+                    }),
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.message || "Unable to submit your reservation request."
+                );
+            }
+
+            const nights = Math.max(
+                1,
+                Math.round(
+                    (
+                        new Date(`${formData.checkOut}T00:00:00`) -
+                        new Date(`${formData.checkIn}T00:00:00`)
+                    ) / 86400000
+                )
+            );
+
+            const subtotal = room.price * nights;
+            const taxes = Math.round(subtotal * 0.1);
+
+            onSubmitted({
+                room,
+                checkIn: formatDate(formData.checkIn),
+                checkOut: formatDate(formData.checkOut),
+                guests:
+                    Number(formData.adults) + Number(formData.children),
+                nights,
+                total: subtotal + taxes,
+                discount: 0,
+                addons: [],
+            });
+
+            // Reset form after successful submission
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                checkIn: "",
+                checkOut: "",
+                adults: 2,
+                children: 0,
+                requests: "",
+            });
+
+            setError("");
+
+            onClose();
+
+        } catch (submissionError) {
+            setError(submissionError.message);
+        } finally {
+            setIsSubmitting(false);
         }
-        );
-
-    const result = await response.json();
-    if(!response.ok) {
-        throw new Error(
-        result.message || "Unable to submit your reservation request."
-        );
-    }
-
-    const nights = Math.max(
-    1,
-    Math.round(
-        (
-            new Date(`${formData.checkOut}T00:00:00`) -
-            new Date(`${formData.checkIn}T00:00:00`)
-        ) / 86400000
-    )
-    );
-
-    const subtotal = room.price * nights;
-    const taxes = Math.round(subtotal * 0.1);
-        onSubmitted({
-            room,
-            checkIn: formatDate(formData.checkIn),
-            checkOut: formatDate(formData.checkOut),
-            guests:
-                Number(formData.adults) + Number(formData.children),
-            nights,
-            total: subtotal + taxes,
-            discount: 0,
-            addons: [],
-        });
-      onClose();
-    } catch (submissionError) {
-        setError(submissionError.message);
-    } finally {
-        setIsSubmitting(false);
-    }
-  };
+    };
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -143,45 +164,45 @@ const [formData, setFormData] = useState({
         <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label className="contact-field">
-            <span className="contact-label">Full name</span>
-            <span className="contact-input-wrap">
+        <span className="contact-label">Full name</span>
+        <span className="contact-input-wrap">
             <User className="contact-input-icon" />
-                <input className="contact-input" name="name" required value={formData.name} onChange={handleChange} />
-            </span>
+            <input className="contact-input" name="name" required value={formData.name} onChange={handleChange} />
+        </span>
         </label>
 
         <label className="contact-field">
-            <span className="contact-label">Email</span>
-            <span className="contact-input-wrap">
+        <span className="contact-label">Email</span>
+        <span className="contact-input-wrap">
             <Mail className="contact-input-icon" />
-                <input className="contact-input" type="email" name="email" required value={formData.email} onChange={handleChange} />
-            </span>
+            <input className="contact-input" type="email" name="email" required value={formData.email} onChange={handleChange} />
+        </span>
         </label>
         </div>
 
         <label className="contact-field">
-            <span className="contact-label">Phone</span>
-            <span className="contact-input-wrap">
+        <span className="contact-label">Phone</span>
+        <span className="contact-input-wrap">
             <Phone className="contact-input-icon" />
-                <input className="contact-input" type="tel" name="phone" required value={formData.phone} onChange={handleChange} />
-            </span>
+            <input className="contact-input" type="tel" name="phone" required value={formData.phone} onChange={handleChange} />
+        </span>
         </label>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label className="contact-field">
-            <span className="contact-label">Check-in</span>
-            <span className="contact-input-wrap">
+        <span className="contact-label">Check-in</span>
+        <span className="contact-input-wrap">
             <CalendarDays className="contact-input-icon" />
-                <input className="contact-input" type="date" name="checkIn" required value={formData.checkIn} onChange={handleChange} />
-            </span>
+            <input className="contact-input" type="date" name="checkIn" required value={formData.checkIn} onChange={handleChange} />
+        </span>
         </label>
 
         <label className="contact-field">
-            <span className="contact-label">Check-out</span>
-            <span className="contact-input-wrap">
+        <span className="contact-label">Check-out</span>
+        <span className="contact-input-wrap">
             <CalendarDays className="contact-input-icon" />
-                <input className="contact-input" type="date" name="checkOut" required value={formData.checkOut} onChange={handleChange} />
-            </span>
+            <input className="contact-input" type="date" name="checkOut" requiredvalue={formData.checkOut} onChange={handleChange} />
+        </span>
         </label>
         </div>
 
@@ -199,17 +220,17 @@ const [formData, setFormData] = useState({
 
         <label className="contact-field">
         <span className="contact-label"> Special requests (optional) </span>
-            <textarea className="contact-input rounded-xl min-h-20 resize-y" name="requests" value={formData.requests} onChange={handleChange} />
+        <textarea className="contact-input rounded-xl min-h-20 resize-y" name="requests" value={formData.requests} onChange={handleChange} />
         </label>
 
         {error && (
-            <p className="text-sm text-red-600 dark:text-red-400" role="alert" >{error}</p>
+            <p className="text-sm text-red-600 dark:text-red-400" role="alert" > {error} </p>
         )}
 
-            <button
-                type="submit" disabled={isSubmitting} className="w-full py-3 bg-sky-500 hover:bg-sky-600 disabled:opacity-60 text-white text-sm font-bold rounded-xl shadow-md transition-colors cursor-pointer" >
+            <button type="submit" disabled={isSubmitting} className="w-full py-3 bg-sky-500 hover:bg-sky-600 disabled:opacity-60 text-white text-sm font-bold rounded-xl shadow-md transition-colors cursor-pointer" >
                 {isSubmitting ? "Sending request..." : "Send reservation request"}
             </button>
+
         </form>
         </div>
         </div>
