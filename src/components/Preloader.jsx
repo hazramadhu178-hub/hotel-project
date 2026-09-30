@@ -23,7 +23,7 @@ export const Preloader = ({ fading }) => {
         <div className="preloader-sky">
             <div className="preloader-sun" />
         <div className="preloader-content">
-        <div className="preloader-boat-bob"> <SailBoat /></div>
+        
             <h1 className="preloader-brand">StrongMe</h1>
             <p className="preloader-tag">Coastal Sanctuary &amp; Seaside Retreat</p>
         <div className="preloader-bar" aria-hidden="true">
