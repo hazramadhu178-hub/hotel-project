@@ -8,22 +8,22 @@ export const BookingConfirmationModal = ({
   details,
 }) => {
 
-  // If modal is closed or booking details are missing, show nothing
+  // Don't show the modal if it is closed or there are no booking details
   if (!isOpen || !details) return null;
 
-  // Create a random confirmation code
+  // Generate a random confirmation number
   const confirmationCode = `SM-${Math.floor(100000 + Math.random() * 900000)}`;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
 
-      {/* Modal Box */}
+      {/* Modal */}
       <div
         className="modal-card max-w-lg p-6 sm:p-8 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-center"
         onClick={(e) => e.stopPropagation()}
       >
 
-        {/* Close Button */}
+        {/* Close button */}
         <button
           type="button"
           onClick={onClose}
@@ -32,12 +32,12 @@ export const BookingConfirmationModal = ({
           <X className="w-5 h-5" />
         </button>
 
-        {/* Success Icon */}
+        {/* Success icon */}
         <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 mx-auto flex items-center justify-center mb-4">
           <CheckCircle2 className="w-9 h-9" />
         </div>
 
-        {/* Confirmation Title */}
+        {/* Confirmation message */}
         <div className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-1">
           <Sparkles className="w-3.5 h-3.5" />
           Reservation Confirmed
@@ -51,10 +51,10 @@ export const BookingConfirmationModal = ({
           A confirmation package with your customized retreat itinerary has been prepared.
         </p>
 
-        {/* Booking Details */}
+        {/* Booking information */}
         <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-left text-xs space-y-3 mb-6">
 
-          {/* Confirmation Code */}
+          {/* Confirmation code */}
           <div className="flex justify-between items-center pb-2.5 border-b border-slate-200 dark:border-slate-700">
             <span className="text-slate-400">
               Confirmation Code:
@@ -65,7 +65,7 @@ export const BookingConfirmationModal = ({
             </strong>
           </div>
 
-          {/* Room */}
+          {/* Room name */}
           <div className="flex justify-between">
             <span className="text-slate-400">
               Reserved Sanctuary:
@@ -76,7 +76,7 @@ export const BookingConfirmationModal = ({
             </strong>
           </div>
 
-          {/* Dates */}
+          {/* Check-in and check-out dates */}
           <div className="flex justify-between">
             <span className="text-slate-400">
               Dates of Stay:
@@ -87,7 +87,7 @@ export const BookingConfirmationModal = ({
             </strong>
           </div>
 
-          {/* Guests */}
+          {/* Number of guests */}
           <div className="flex justify-between">
             <span className="text-slate-400">
               Guests:
@@ -117,7 +117,7 @@ export const BookingConfirmationModal = ({
             </div>
           )}
 
-          {/* Total */}
+          {/* Total price */}
           <div className="pt-2 border-t border-slate-200 dark:border-slate-700 flex justify-between items-baseline">
 
             <span className="font-bold text-slate-800 dark:text-slate-200">
@@ -135,7 +135,7 @@ export const BookingConfirmationModal = ({
         {/* Buttons */}
         <div className="space-y-2">
 
-          {/* Print / Save Receipt */}
+          {/* Save or print confirmation */}
           <button
             type="button"
             onClick={() => {
@@ -147,7 +147,7 @@ export const BookingConfirmationModal = ({
             Save Booking Confirmation Receipt
           </button>
 
-          {/* Close Modal */}
+          {/* Close modal */}
           <button
             type="button"
             onClick={onClose}
@@ -162,4 +162,3 @@ export const BookingConfirmationModal = ({
     </div>
   );
 };
-

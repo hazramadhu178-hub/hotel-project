@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { X, Calendar, Clock, Users, UtensilsCrossed, Check } from 'lucide-react';
 
 export const DiningReservationModal = ({
-  venue,
-  isOpen,
-  onClose,
-  onConfirmReservation,
+    venue,
+    isOpen,
+    onClose,
+    onConfirmReservation,
 }) => {
   const [date, setDate] = useState('2025-07-29');
   const [time, setTime] = useState('19:30');
@@ -17,11 +17,11 @@ export const DiningReservationModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     onConfirmReservation({
-      venue,
-      date,
-      time,
-      guests,
-      specialRequests,
+        venue,
+        date,
+        time,
+        guests,
+        specialRequests,
     });
   };
 
