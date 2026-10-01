@@ -167,7 +167,7 @@ export const ReservationModal = ({
         <span className="contact-label">Full name</span>
         <span className="contact-input-wrap">
             <User className="contact-input-icon" />
-            <input className="contact-input" name="name" required value={formData.name} onChange={handleChange} />
+            <input className="contact-input" name="name"  value={formData.name} onChange={handleChange} />
         </span>
         </label>
 
@@ -175,7 +175,7 @@ export const ReservationModal = ({
         <span className="contact-label">Email</span>
         <span className="contact-input-wrap">
             <Mail className="contact-input-icon" />
-            <input className="contact-input" type="email" name="email" required value={formData.email} onChange={handleChange} />
+            <input className="contact-input" type="email" name="email"  value={formData.email} onChange={handleChange} />
         </span>
         </label>
         </div>
@@ -184,7 +184,7 @@ export const ReservationModal = ({
         <span className="contact-label">Phone</span>
         <span className="contact-input-wrap">
             <Phone className="contact-input-icon" />
-            <input className="contact-input" type="tel" name="phone" required value={formData.phone} onChange={handleChange} />
+            <input className="contact-input" type="tel" name="phone"  value={formData.phone} onChange={handleChange} />
         </span>
         </label>
 
@@ -193,7 +193,7 @@ export const ReservationModal = ({
         <span className="contact-label">Check-in</span>
         <span className="contact-input-wrap">
             <CalendarDays className="contact-input-icon" />
-            <input className="contact-input" type="date" name="checkIn" required value={formData.checkIn} onChange={handleChange} />
+            <input className="contact-input" type="date" name="checkIn"  value={formData.checkIn} onChange={handleChange} />
         </span>
         </label>
 
@@ -201,7 +201,7 @@ export const ReservationModal = ({
         <span className="contact-label">Check-out</span>
         <span className="contact-input-wrap">
             <CalendarDays className="contact-input-icon" />
-            <input className="contact-input" type="date" name="checkOut" requiredvalue={formData.checkOut} onChange={handleChange} />
+            <input className="contact-input" type="date" name="checkOut"  value={formData.checkOut} onChange={handleChange} />
         </span>
         </label>
         </div>
@@ -209,7 +209,7 @@ export const ReservationModal = ({
         <div className="grid grid-cols-2 gap-4">
         <label className="contact-field">
             <span className="contact-label">Adults</span>
-            <input className="contact-input rounded-xl" type="number" min="1" name="adults" required value={formData.adults} onChange={handleChange} />
+            <input className="contact-input rounded-xl" type="number" min="1" name="adults"  value={formData.adults} onChange={handleChange} />
         </label>
 
         <label className="contact-field">
